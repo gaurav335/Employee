@@ -77,6 +77,8 @@ class EmployeeDataTable extends DataTable
             Column::make('id')->hidden(true),
             Column::make('f_name')->title('First Name'),
             Column::make('l_name')->title('Last Name'),
+            Column::make('gender')->title('Gender'),
+            Column::make('joining_date')->title('Joining Date'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
