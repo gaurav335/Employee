@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Designation;
 
 class DesignationSeeder extends Seeder
 {
@@ -13,6 +16,9 @@ class DesignationSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('designation')->truncate();
+        Designation::create([
+            'name' => 'ABC'
+        ]);
     }
 }
