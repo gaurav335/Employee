@@ -11,7 +11,7 @@ use App\Models\Department;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Employee\AddEmployeeRequest;
-
+use App\Http\Requests\Employee\UpdateEmployeeRequest;
 
 
 class EmployeeController extends Controller
@@ -64,8 +64,6 @@ class EmployeeController extends Controller
         }
 
         return $response;
-        // return redirect()->route('admin.employee.index')->with('success', 'Employee Created Successfully');
-
     }
 
     public function edits($id)
@@ -79,39 +77,145 @@ class EmployeeController extends Controller
         
     }
 
-    public function update(Request $request)
+    public function update(UpdateEmployeeRequest $request)
     {
-
-        $image = uploadFile($request->image,'employeeimage');
-        $passport_doc = uploadFile($request->passport_doc,'EmployeePassportdocument');
-
-        $employee = Employee::where('id',$request->id)->update([
-            'f_name'=>$request->f_name,
-            'l_name'=>$request->l_name,
-            'dob'=>$request->dob,
-            'mobile_no'=>$request->mobile_no,
-            'email'=>$request->email,
-            'gender'=>$request->gender,
-            'salary'=>$request->salary,
-            'joining_date'=>$request->joining_date,
-            'image'=>$image,
-            'passport_doc'=>$passport_doc,
-            'passport_num'=>$request->passport_num,
-            'department'=>$request->department,
-            'designation'=>$request->designation,
-        ]);
-        if($employee)
+        if(isset($request->image) && isset($request->passport_doc))
         {
-            $response['status'] = 'success';
-            $response['message'] = 'Employee updated successfully';
-        }
-        else
-        {
-            $response['status'] = 'danger';
-            $response['message'] = 'Something went wrong! Try again later...';
-        }
+            $employees= Employee::where('id',$request->id)->first();
 
-        return $response;
+            $image = $employees->getRawOriginal('image');
+            if(file_exists(public_path('storage/EmployeeImage/'.$image))){
+                @unlink(public_path('storage/EmployeeImage/'.$image));                      
+            }
+
+            $passport_doc = $employees->getRawOriginal('passport_doc');
+            if(file_exists(public_path('storage/EmployeePassportdocument/'.$passport_doc))){
+                @unlink(public_path('storage/EmployeePassportdocument/'.$passport_doc));                      
+            }
+
+            $image = uploadFile($request->image,'employeeimage');
+            $passport_doc = uploadFile($request->passport_doc,'EmployeePassportdocument');
+            $employee = Employee::where('id',$request->id)->update([
+                'f_name'=>$request->f_name,
+                'l_name'=>$request->l_name,
+                'dob'=>$request->dob,
+                'mobile_no'=>$request->mobile_no,
+                'email'=>$request->email,
+                'gender'=>$request->gender,
+                'salary'=>$request->salary,
+                'joining_date'=>$request->joining_date,
+                'image'=>$image,
+                'passport_doc'=>$passport_doc,
+                'passport_num'=>$request->passport_num,
+                'department'=>$request->department,
+                'designation'=>$request->designation,
+            ]);
+            if($employee)
+            {
+                $response['status'] = 'success';
+                $response['message'] = 'Employee updated successfully';
+            }
+            else
+            {
+                $response['status'] = 'danger';
+                $response['message'] = 'Something went wrong! Try again later...';
+            }
+            return $response;
+            } elseif (isset($request->passport_doc)){
+        
+            $employees= Employee::where('id',$request->id)->first();
+
+            $passport_doc = $employees->getRawOriginal('passport_doc');
+            if(file_exists(public_path('storage/EmployeePassportdocument/'.$passport_doc))){
+                @unlink(public_path('storage/EmployeePassportdocument/'.$passport_doc));                      
+            }
+        
+            $passport_doc = uploadFile($request->passport_doc,'EmployeePassportdocument');
+            $employee = Employee::where('id',$request->id)->update([
+                'f_name'=>$request->f_name,
+                'l_name'=>$request->l_name,
+                'dob'=>$request->dob,
+                'mobile_no'=>$request->mobile_no,
+                'email'=>$request->email,
+                'gender'=>$request->gender,
+                'salary'=>$request->salary,
+                'joining_date'=>$request->joining_date,
+                'passport_doc'=>$passport_doc,
+                'passport_num'=>$request->passport_num,
+                'department'=>$request->department,
+                'designation'=>$request->designation,
+            ]);
+            if($employee)
+            {
+                $response['status'] = 'success';
+                $response['message'] = 'Employee updated successfully';
+            }
+            else
+            {
+                $response['status'] = 'danger';
+                $response['message'] = 'Something went wrong! Try again later...';
+            }
+            return $response;
+            }elseif (isset($request->image)) {
+            $employees= Employee::where('id',$request->id)->first();
+
+            $image = $employees->getRawOriginal('image');
+            if(file_exists(public_path('storage/EmployeeImage/'.$image))){
+                @unlink(public_path('storage/EmployeeImage/'.$image));                      
+            }
+            
+            $image = uploadFile($request->image,'employeeimage');
+            $employee = Employee::where('id',$request->id)->update([
+                'f_name'=>$request->f_name,
+                'l_name'=>$request->l_name,
+                'dob'=>$request->dob,
+                'mobile_no'=>$request->mobile_no,
+                'email'=>$request->email,
+                'gender'=>$request->gender,
+                'salary'=>$request->salary,
+                'joining_date'=>$request->joining_date,
+                'image'=>$image,
+                'passport_num'=>$request->passport_num,
+                'department'=>$request->department,
+                'designation'=>$request->designation,
+            ]);
+            if($employee)
+            {
+                $response['status'] = 'success';
+                $response['message'] = 'Employee updated successfully';
+            }
+            else
+            {
+                $response['status'] = 'danger';
+                $response['message'] = 'Something went wrong! Try again later...';
+            }
+            return $response;
+            } else {
+            $employee = Employee::where('id',$request->id)->update([
+                'f_name'=>$request->f_name,
+                'l_name'=>$request->l_name,
+                'dob'=>$request->dob,
+                'mobile_no'=>$request->mobile_no,
+                'email'=>$request->email,
+                'gender'=>$request->gender,
+                'salary'=>$request->salary,
+                'joining_date'=>$request->joining_date,
+                'passport_num'=>$request->passport_num,
+                'department'=>$request->department,
+                'designation'=>$request->designation,
+            ]);
+            if($employee)
+            {
+                $response['status'] = 'success';
+                $response['message'] = 'Employee updated successfully';
+            }
+            else
+            {
+                $response['status'] = 'danger';
+                $response['message'] = 'Something went wrong! Try again later...';
+            }
+            return $response;
+        }
     }
 
     public function view($id)

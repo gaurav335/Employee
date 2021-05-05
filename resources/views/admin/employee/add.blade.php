@@ -238,10 +238,19 @@
                     $html = '<div class="alert alert-block alert-'+result.status+'"><button type="button" class="close" data-dismiss="alert">×</button><strong>'+result.message+'</strong></div>';
 
                     $('.ajax-msg').append($html);
-                }
-                $('#employee_add_modal').modal('hide');
+                    if(result.status=="success"){
+                        alert('Employee added successfully');
 
-                window.LaravelDataTables["employee-table"].draw();
+                        var str = window.location.href
+                        window.location.href =str.substring(0, str.lastIndexOf("/") + 1)
+                    }
+                    if(result.status=="danger"){
+                        alert("Now You can not drop the more Property!");
+                        var str = window.location.href
+                        window.location.href =str.substring(0, str.lastIndexOf("/") + 1)
+                    }
+                }
+
             },
             complete:function(){
                 window.setTimeout(function() {

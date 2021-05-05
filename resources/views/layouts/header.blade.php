@@ -22,7 +22,7 @@
                     <li><a class="dropdown-item" href="javascript:">Something else here</a></li>
                 </ul>
             </li> -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <div class="main-search">
                     <div class="input-group">
                         <input type="text" id="m-search" class="form-control" placeholder="Search . . .">
@@ -34,7 +34,7 @@
                         </span>
                     </div>
                 </div>
-            </li>
+            </li> -->
         </ul>
         <ul class="navbar-nav ml-auto">
             <!-- <li>
