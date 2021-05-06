@@ -12,6 +12,27 @@ use App\Http\Requests\Designation\UpdateDesignationRequest;
 
 class DesignationController extends Controller
 {
+
+    // public function list()
+    // {
+    //     return Designation::all();
+    // }
+
+    // public function add(Request $req)
+    // {
+    //     $designation = new Designation;
+    //     $designation->name = $req->name;
+    //     $designation->status = $req->status;
+    //     $result = $designation->save();
+    //     if($result)
+    //     {
+    //         return ["Result"=>"Has been success!"];
+    //     }
+    //     else
+    //     {
+    //         return ["Result"=>"Has been failed!"];
+    //     }
+    // }
     
     public function index(DesignationDataTable $designationdataTable)
     {
