@@ -27,7 +27,7 @@ Route::get('login',[EmployeeController::class, 'loginEmployee'])->name('login');
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('designation',[DesignationController::class,'get']);
     Route::get('department',[DepartmentController::class,'get']);
-    Route::get('employee',[EmployeeController::class,'get']);
+    // Route::get('employee',[EmployeeController::class,'get']);
     Route::get('serch/{name}',[EmployeeController::class,'serch']);
 
 });

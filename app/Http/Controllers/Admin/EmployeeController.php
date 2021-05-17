@@ -16,14 +16,14 @@ use App\Http\Requests\Employee\UpdateEmployeeRequest;
 
 class EmployeeController extends Controller
 {
-    public function get()
-    {
-        return Employee::paginate(5);
-    }
+    // public function get()
+    // {
+    //     return Employee::paginate(5);
+    // }
 
     public function serch($name)
     {
-        return Employee::where("l_name","like","%".$name."%")->orwhere("email","like","%".$name."%")->get();
+        return Employee::where("l_name","like","%".$name."%")->orwhere("email","like","%".$name."%")->paginate(5);
     }
 
     public function index(EmployeeDataTable $employeedataTable)
