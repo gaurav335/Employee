@@ -4,39 +4,26 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// use App\Http\Controllers\API\BaseController as BaseController;
 use App\Datatables\DesignationDataTable;
 use App\Models\Designation;
 use App\Http\Requests\Designation\AddDesignationRequest;
 use App\Http\Requests\Designation\UpdateDesignationRequest;
+// use Validator;
+// use App\Http\Resources\Designation as DesignationResource;
 
 
 class DesignationController extends Controller
 {
+    public function get(){
 
-    // public function list()
-    // {
-    //     return Designation::all();
-    // }
-
-    // public function add(Request $req)
-    // {
-    //     $designation = new Designation;
-    //     $designation->name = $req->name;
-    //     $designation->status = $req->status;
-    //     $result = $designation->save();
-    //     if($result)
-    //     {
-    //         return ["Result"=>"Has been success!"];
-    //     }
-    //     else
-    //     {
-    //         return ["Result"=>"Has been failed!"];
-    //     }
-    // }
+        return Designation::paginate(5);
+    }
     
     public function index(DesignationDataTable $designationdataTable)
     {
         return $designationdataTable->render('admin.designation.index');
+
     }
 
     public function create()
@@ -60,6 +47,7 @@ class DesignationController extends Controller
         }
 
         return $response;
+
     }
 
     public function edit(Request $request)

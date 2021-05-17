@@ -106,13 +106,13 @@
                        <div class="col-4">
                             <div class="form-group">
                                 <label>Profile Image</label>
-                                <input type="file" id="image" name="image" value="{{$edit->image}}" class="form-control" placeholder="Enter Your Profile Image.." />
+                                <input type="file" id="image" name="image" value="{{$edit->image}}" class="form-control" accept="image/jpg,image/png,image/jpeg,image/gif" placeholder="Enter Your Profile Image.." />
                             </div>             
                         </div>
                         <div class="col-4">
                            <div class="form-group">
                                 <label>Passport Document</label>
-                                <input type="file" id="passport_doc" value="{{$edit->passport_doc}}" name="passport_doc" class="form-control" placeholder="Enter Your passport Document.." />
+                                <input type="file" id="passport_doc" value="{{$edit->passport_doc}}" name="passport_doc" class="form-control" accept="image/jpg,image/png,image/jpeg,image/gif" placeholder="Enter Your passport Document.." />
                             </div>
                         </div>
                         <div class="col-4">
@@ -224,17 +224,12 @@
                     $('#employee_edit_modal').find("#salary").val(result.salary)
                     $('#employee_edit_modal').find("#joining_date").val(result.joining_date)
                     $('#employee_edit_modal').find("#image").val(result.image)
+                    $('#employee_edit_modal').find("#passport_doc").val(result.passport_doc)
                     $('#employee_edit_modal').find("#passport_num").val(result.passport_num)
                     $('#employee_edit_modal').find("#department").val(result.department)
                     $('#employee_edit_modal').find("#designation").val(result.designation)
 
-                    // if(result.image) {
-                    //     $('#edit_emp_image').prop('required', false);
-                    //     $('#emp_img_tag').attr('src', result.image);
-                    // } else {
-                    //     $('#edit_emp_image').prop('required', true);
-                    // }
-                }
+                    
             },
         });
     });
@@ -365,6 +360,48 @@
         },
         unhighlight: function(element, errorClass, validClass) {
             $(element).parents(".error").removeClass(errorClass).addClass(validClass);
+        }
+    });
+
+    $('INPUT[type="file"]').change(function () {
+    var ext = this.value.match(/\.(.+)$/)[1];
+        switch (ext) {
+            case 'JPG':
+            case 'JFIF':
+            case 'JPEG':
+            case 'PNG':
+            case 'GIF':
+            case 'jpg':
+            case 'jfif':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+                $('#image').attr('disabled', false);
+                break;
+            default:
+                alert('This is not an allowed file type.');
+                this.value = '';
+        }
+    });
+
+    $('INPUT[type="file"]').change(function () {
+    var ext = this.value.match(/\.(.+)$/)[1];
+        switch (ext) {
+            case 'JPG':
+            case 'JFIF':
+            case 'JPEG':
+            case 'PNG':
+            case 'GIF':
+            case 'jpg':
+            case 'jfif':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+                $('#passport_doc').attr('disabled', false);
+                break;
+            default:
+                alert('This is not an allowed file type.');
+                this.value = '';
         }
     });
 

@@ -34,11 +34,12 @@ class AddEmployeeRequest extends FormRequest
         'gender' => 'required',	
         'salary' => 'required|max:10',	
         'joining_date' => 'required',	
-        'image' => 'required',	
-        'passport_doc' => 'required',	
+        'image' => 'required',
+        'passport_doc' => 'required',
         'passport_num' => 'required|max:20',	
         'department' => 'required',	
-        'designation' => 'required'
+        'designation' => 'required',
+        'designation' => 'required',
         ];
     }
 }

@@ -3,13 +3,7 @@
 
 <head>
 <title>@yield('page_title') | Admin </title>
-    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!-- [if lt IE 11]>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif] -->
-    <!-- Meta -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -28,10 +22,7 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
 
-    <!-- <link rel="stylesheet" href="{{ asset('assets/plugins/morris/morris.css') }}"> -->
-    <!-- <link href="{{ asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"> -->
-    <!-- <link href="{{ asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css"> -->
-
+    
     <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
@@ -72,6 +63,31 @@
     <script src="{{ asset('assets/js/vendor-all.min.js')}}"></script>
 	<script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{ asset('assets/js/pcoded.min.js')}}"></script>
+
+
+        <!-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
+        <script src="{{ asset('assets/js/detect.js') }}"></script>
+        <script src="{{ asset('assets/js/fastclick.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.blockUI.js') }}"></script>
+        <script src="{{ asset('assets/js/waves.js') }}"></script>
+        <script src="{{ asset('assets/js/image.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.scrollTo.min.js') }}"></script> -->
+
+        <!--Morris Chart-->
+        <!-- <script src="{{ asset('assets/plugins/morris/morris.min.js') }}"></script> -->
+
+        <!-- dashboard -->
+        <!-- <script src="{{ asset('assets/pages/dashboard.js') }}"></script> -->
+
+        <!-- App js -->
+        <script src="{{ asset('assets/js/app.js') }}"></script> -->
+
+        <script src="{{ asset('assets/plugins/parsleyjs/parsley.min.js') }}"></script>
+
 
         <!-- datatable -->
         <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>

@@ -121,7 +121,7 @@
                         <div class="col-4">
                            <div class="form-group">
                                 <label>Passport Document</label>
-                                <input type="file" id="passport_doc" name="passport_doc" class="form-control" placeholder="Enter Your passport Document.." />
+                                <input type="file" id="image" name="passport_doc" class="form-control" placeholder="Enter Your passport Document.." />
                                 <span class="error-msg-input text-danger"></span>
                             </div>
                         </div>
@@ -244,11 +244,6 @@
                         var str = window.location.href
                         window.location.href =str.substring(0, str.lastIndexOf("/") + 1)
                     }
-                    if(result.status=="danger"){
-                        alert("Now You can not drop the more Property!");
-                        var str = window.location.href
-                        window.location.href =str.substring(0, str.lastIndexOf("/") + 1)
-                    }
                 }
 
             },
@@ -314,6 +309,12 @@
             designation: {
                 required: true,
             },
+            password: {
+                required: true,
+            },
+            confirm_password: {
+                required: true,
+            },
         },
         messages: {
             f_name: {
@@ -355,6 +356,12 @@
             designation: {
                 required: 'designation is required',
             },
+            password: {
+                required: 'password is required',
+            },
+            confirm_password: {
+                required: 'confirm_password is required',
+            },
         },
         submitHandler: function (form) {
             addEmployee(form);
@@ -382,6 +389,28 @@
             $('#confirm_password').get(0).type = 'text';
         } else {
             $('#confirm_password').get(0).type = 'password';
+        }
+    });
+
+    
+$('INPUT[type="file"]').change(function () {
+    var ext = this.value.match(/\.(.+)$/)[1];
+    switch (ext) {
+        case 'JPG':
+        case 'JFIF':
+        case 'JPEG':
+        case 'PNG':
+        case 'GIF':
+        case 'jpg':
+        case 'jfif':
+        case 'jpeg':
+        case 'png':
+        case 'gif':
+            $('#image').attr('disabled', false);
+            break;
+        default:
+            alert('This is not an allowed file type.');
+            this.value = '';
         }
     });
 

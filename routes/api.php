@@ -2,7 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\DesignationController;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\EmployeeController;
+
+
 
 
 /*
@@ -16,15 +21,16 @@ use App\Http\Controllers\Admin\DesignationController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login',[EmployeeController::class, 'loginEmployee']);
+Route::get('login',[EmployeeController::class, 'loginEmployee'])->name('login');
+
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('designation',[DesignationController::class,'get']);
+    Route::get('department',[DepartmentController::class,'get']);
+    Route::get('employee',[EmployeeController::class,'get']);
+    Route::get('serch/{name}',[EmployeeController::class,'serch']);
+
 });
 
-// Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
-//     Route::get('/user', function( Request $request ){
-//       return $request->user();
-//     });
-// });  
 
-// Route::get("list",[DesignationController::class,'list']);
-// Route::post("add",[DesignationController::class,'add']);
+

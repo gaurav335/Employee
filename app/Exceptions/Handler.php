@@ -95,7 +95,7 @@ class Handler extends ExceptionHandler
 
         } else {
             if(\Auth::guard()=='admin') {
-                return redirect()->guest('Admin/login');
+                return redirect()->guest('admin/login');
             } 
         }
     }

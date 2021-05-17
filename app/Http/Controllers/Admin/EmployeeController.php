@@ -16,6 +16,16 @@ use App\Http\Requests\Employee\UpdateEmployeeRequest;
 
 class EmployeeController extends Controller
 {
+    public function get()
+    {
+        return Employee::paginate(5);
+    }
+
+    public function serch($name)
+    {
+        return Employee::where("l_name","like","%".$name."%")->orwhere("email","like","%".$name."%")->get();
+    }
+
     public function index(EmployeeDataTable $employeedataTable)
     {
         $designation = Designation::all();
@@ -237,5 +247,23 @@ class EmployeeController extends Controller
             @unlink(public_path('storage/EmployeePassportdocument/'.$passport_doc));                      
         }
         return Employee::where('id',$request->id)->delete();
+    }
+
+    public function loginEmployee(Request $request)
+    {
+        $user = Employee::where('email',$request->email)->first();
+         if(!$user || !Hash::check($request->password, $user->password)){
+             return response([
+                 'message' => ['These login credentials do not match our records.']
+             ], 404);
+         }
+         $token = $user->createToken('Token')->accessToken;
+
+         $response = [
+             'user' => $user,
+             'token' => $token
+         ];
+         return response($response, 201);
+        
     }
 }

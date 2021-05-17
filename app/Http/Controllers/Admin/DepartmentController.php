@@ -11,6 +11,11 @@ use App\Http\Requests\Department\UpdateDepartmentRequest;
 
 class DepartmentController extends Controller
 {
+    public function get(){
+
+        return Department::paginate(5);
+    }
+
     public function index(DepartmentDataTable $departmentdataTable)
     {
         return $departmentdataTable->render('admin.department.index');
